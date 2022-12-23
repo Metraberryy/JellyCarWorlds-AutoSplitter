@@ -1,6 +1,7 @@
 state("JellyCar Worlds") {}
 
-startup {
+startup
+{
     settings.Add("split_levelexit", true, "Split on each level exit");
     settings.Add("split_worldexit", true, "Split on each world exit");
 
@@ -25,17 +26,14 @@ init {
 
 update
 {
-    if (vars.Helper.Scenes.Active.Name != null)
-    {
-        current.SceneName = vars.Helper.Scenes.Active.Name;
-    }
+    current.SceneName = vars.Helper.Scenes.Active.Name ?? old.SceneName;
 }
 
 start
 {
     if (current.SceneName == "game" && old.SceneName == "newgame")
     {
-        print("Start");
+        vars.Log("Start");
         return true;
     }
 }
@@ -44,20 +42,21 @@ reset
 {
     if (current.SceneName == "newgame" && old.SceneName == "menus")
     {
-        print("Reset");
+        vars.Log("Reset");
         return true;
     }
 }
 
 split
 {
-    if (vars.Helper["LevelIsComplete"].Current &! vars.Helper["LevelIsComplete"].Old)
+    if (current.LevelIsComplete && !old.LevelIsComplete)
     {
-        if (settings["split_worldexit"] && vars.Helper["ActiveLevelType"].Current == 0)
+        if (settings["split_worldexit"] && current.ActiveLevelType == 0)
         {
             return true;
         }
-        if (settings["split_levelexit"] && vars.Helper["ActiveLevelType"].Current == 1)
+
+        if (settings["split_levelexit"] && current.ActiveLevelType == 1)
         {
             return true;
         }
