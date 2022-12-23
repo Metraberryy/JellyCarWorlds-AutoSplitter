@@ -9,7 +9,8 @@ startup
     vars.Helper.LoadSceneManager = true;
 }
 
-init {
+init
+{
     vars.Helper.TryLoad = (Func<dynamic, bool>)(mono =>
     {
         var ujc = mono["UtilsJellyCar"];
