@@ -18,7 +18,7 @@ init
 
         vars.Helper["ActiveLevelName"] = ujc.MakeString("ActiveLevelName");
         vars.Helper["ActiveLevelType"] = ujc.Make<int>("ActiveLevelType");
-        vars.Helper["LevelIsComplete"] = lc.Make<bool>("_active", 0xF4);
+        vars.Helper["LevelIsComplete"] = lc.Make<bool>("_active", 0xFC);
         current.LevelIsComplete = false;
 
         return true;
@@ -54,11 +54,13 @@ split
     {
         if (settings["split_worldexit"] && current.ActiveLevelType == 0)
         {
+            vars.Log("World Split");
             return true;
         }
 
         if (settings["split_levelexit"] && current.ActiveLevelType == 1)
         {
+            vars.Log("Level Split");
             return true;
         }
     }
