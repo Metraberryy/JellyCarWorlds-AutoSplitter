@@ -18,7 +18,7 @@ init
 
         vars.Helper["ActiveLevelName"] = ujc.MakeString("ActiveLevelName");
         vars.Helper["ActiveLevelType"] = ujc.Make<int>("ActiveLevelType");
-        vars.Helper["LevelIsComplete"] = lc.Make<bool>("_active", 0x11d);
+        vars.Helper["LevelIsComplete"] = lc.Make<bool>("_active", 0x130);
         current.LevelIsComplete = false;
 
         return true;
